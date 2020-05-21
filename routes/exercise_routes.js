@@ -9,6 +9,7 @@ const ExerciseCntrl = require('../controllers/exerciseCntrl');
 
 // GET  "/""
 // Calls controller which will return all activities for a specific workout
+// This route handles /api/exercise
 router.get("/", ExerciseCntrl.getAll);
 
 // -- ADD ADDITIONAL ROUTES -- //

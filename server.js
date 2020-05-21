@@ -7,7 +7,10 @@ const path = require("path")
 let db = require("./models");
 
 // -- Requiring our Routes -- //
-const api_routes = require("./routes/api_routes");
+const exercise_routes = require("./routes/exercise_routes");
+// const activity_routes = require("./routes/activity_routes");
+// const workout_routes = require("./routes/workout_routes");
+
 const about_routes = require("./routes/html_routes");
 
 // -- CREATE AN `EXPRESS` INSTANCE -- //
@@ -39,12 +42,14 @@ app.use(express.static("public"));
 // ================================== // 
 // -- Activity Syntax -> Passing App INSTANCE to Route -- //
 require("./routes/html_routes")(app);
-
+// require("./routes/exercise_routes")(app);
 
 // -- Example ROUTES using EXPRESS ROUTER (https://expressjs.com/en/guide/routing.html) -- //
 
 // -- Use express router to register routes as middleware -- //
-app.use('/api/activity', api_routes);
+// app.use('/api/activity', activity_routes);
+// app.use('/api/workout', workout_routes);
+app.use('/api/exercise', exercise_routes);
 
 // ======= ALTERNATE SYNTAX FOR /about ROUTE USING EXPRESS ROUTER ==== //
 // app.use('/about', about_routes);  // <-- uncomment to use, update 

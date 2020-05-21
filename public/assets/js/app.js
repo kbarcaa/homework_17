@@ -18,7 +18,7 @@ $(document).ready(function(){
       console.log(workout);
       const li = $("<li>");
       li.addClass("workout-item");
-      li.attr("data-workout-id", workout._id);
+      li.attr("data-workout-id", workout.id);
       li.attr("data-workout-idx", idx);
       li.html("<span>" + workout.day + "</span>" + workout.name);
       ul.append(li);
@@ -86,10 +86,17 @@ $(document).ready(function(){
     }).then( resp => {
       console.log(resp)
       // populate the select area
+
+      /*
+      [
+        {  name: xxxxx },
+        {  name: xxxxx }
+      ]
+      */
       resp.forEach( exercise => {
         const opt = $("<option>");
-        opt.val(exercise.name);
-        opt.text(exercise.name);
+        opt.val(exercise.exercise_name);
+        opt.text(exercise.exercise_name);
         $("select#exercise").append(opt);
       });
 
@@ -109,8 +116,8 @@ $(document).ready(function(){
       data: selectedWorkout
     }).then(function(resp){
       console.log(resp);
-      if( resp && resp._id ){
-        selectedWorkout._id = resp._id;
+      if( resp && resp.id ){
+        selectedWorkout.id = resp.id;
       }
     });
   }
@@ -120,7 +127,7 @@ $(document).ready(function(){
   function saveActivity(activity){
     $.ajax({
       method: "POST",
-      url: "/api/activity?workoutId=" + selectedWorkout._id,
+      url: "/api/activity?workoutId=" + selectedWorkout.id,
       data: activity
     }).then(function(resp){
       console.log(resp);
