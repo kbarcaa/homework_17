@@ -1,22 +1,22 @@
+// // -- ACTIVITY MODEL DEFINITION -- //
+
 module.exports = function (sequelize, DataTypes) {
-  var Activity = sequelize.define("Activity", {
-    activity_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1],
-      },
-    },
+  const Activity = sequelize.define("Activity", {
+    duration: DataTypes.STRING,
+    weight: DataTypes.STRING,
+    reps: DataTypes.STRING,
+    sets: DataTypes.STRING,
+    distance: DataTypes.STRING,
   });
 
   Activity.associate = function(models) {
-  
-    // has one or belongsTo
-    Activity.hasOne(models.Exercise, {
-      onDelete: "cascade"
+    // hasOne or belongsTo
+    Activity.belongsTo(models.Workout,{
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
-
 
   return Activity;
 };

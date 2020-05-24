@@ -1,23 +1,19 @@
+// // -- WORKOUT MODEL DEFINITION -- //
+
 module.exports = function (sequelize, DataTypes) {
   var Workout = sequelize.define("Workout", {
-    workout_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1],
-      },
-    },
+    name: DataTypes.STRING,
+    workoutId: DataTypes.STRING,
+      
   });
 
-
   Workout.associate = function(models) {
-    
     Workout.hasMany(models.Activity, {
-      onDelete: "cascade"
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
-
-
 
   return Workout;
 };
